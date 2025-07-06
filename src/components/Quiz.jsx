@@ -9,10 +9,20 @@ export default function Quiz (){
     const activeQuestionIndex = userAnswers.length;
    
     const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
+
       const handleSelectedAnswer = useCallback( function handleSelectedAnswer(selectedAnswer){
+        setAnswerState('answered');
         setUserAnswers((prevUserAnswer)=>{
            return [...prevUserAnswer,selectedAnswer]
         });
+        setTimeout(()=>{
+            if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]){
+                setAnswerState('correct')
+            }else{
+                setAnswerState('wrong')
+            }
+        },1000);
+
     },[]);
 
 
@@ -40,7 +50,7 @@ shuffledAnswers.sort(()=> Math.random() - 0.5);
             <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
             <ul>
                 {shuffledAnswers.map((answer)=>(
-                    <li key={answer} className="answer">
+                    <li key={answer} className={`answer ${answerState}`}>
                         <button onClick={()=>handleSelectedAnswer(answer)}> {answer} </button>
                     </li>
                 ))}
