@@ -61,3 +61,6 @@ const shuffledAnswers = useRef();
 if (!shuffledAnswers.current) {
   shuffledAnswers.current = [...answers].sort(() => Math.random() - 0.5);
 }
+
+ ##🚨 Live View 
+ <a href="https://react-quiz-sooty.vercel.app/">click here</a>
