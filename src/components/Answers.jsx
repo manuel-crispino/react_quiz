@@ -14,15 +14,16 @@ export default function Answers ({answers,selectedAnswer,answerState,onSelect}){
                    const  isSelected = selectedAnswer === answer;
                     let cssClass = '';
                     
-                    if (answerState === 'selected' && isSelected){
+                    if (answerState === 'answered' && isSelected){
                         cssClass = 'selected'
                     }
                    else if ((answerState === 'wrong' || answerState === 'correct' ) && isSelected ){
                         cssClass = answerState;
                     }
+
                     return(
                     <li key={answer} className='answer'>
-                        <button className={cssClass} onClick={()=>onSelect(answer)}>
+                        <button className={cssClass} onClick={()=>onSelect(answer)} disabled={answerState !== ''}>
                              {answer} </button>
                     </li>
                 )})}
