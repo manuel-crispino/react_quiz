@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import quizComplete from "../assets/quiz-complete.png"
 import QUESTIONS from "../questions.js"
 
