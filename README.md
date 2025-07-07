@@ -56,11 +56,14 @@ Each question is governed by an intelligent timing mechanism:
 
 Answers are shuffled only **once per render** using `useRef()` inside the `Answers` component:
 
+ ##🚨 Live View 
+ <a href="https://react-quiz-sooty.vercel.app/">click here</a>
+
+
 ```js
 const shuffledAnswers = useRef();
 if (!shuffledAnswers.current) {
   shuffledAnswers.current = [...answers].sort(() => Math.random() - 0.5);
 }
 
- ##🚨 Live View 
- <a href="https://react-quiz-sooty.vercel.app/">click here</a>
+
