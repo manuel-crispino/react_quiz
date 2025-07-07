@@ -5,6 +5,8 @@ import Summery from "./Summary.jsx";
 
 export default function Quiz (){
 
+    const [isStarted,setIsStarted] = useState(false)
+
     const [userAnswers,setUserAnswers] =  useState([]); 
     const activeQuestionIndex = userAnswers.length;
    
@@ -24,15 +26,23 @@ export default function Quiz (){
    if(quizIsComplete){
         return <Summery userAnswers={userAnswers}/>
     }
+    if   (!isStarted){
 
+    return (<div id="quiz">
+         <button onClick={()=>setIsStarted(!isStarted)}>Click to Start</button> 
+         </div>)
+    }
+    
     return(
      <div id="quiz">
-   <Question 
+        {isStarted && 
+          <Question 
      key={activeQuestionIndex}
      index={activeQuestionIndex} // use index as a key value, (react does not allow key name to be use as a prop )
      onSelectAnswer={handleSelectedAnswer}
      onSkipAnswer={handleSkipAnswer}
-     />
+     />}
+ 
      </div>
     );
 }
