@@ -13,7 +13,13 @@ export default function Quiz (){
     const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
       const handleSelectedAnswer = useCallback( function handleSelectedAnswer(selectedAnswer){
-        if (answerState !== '')return;
+
+        if (answerState === '' && selectedAnswer === null ){
+           console.log('skipped answer');
+            setUserAnswers((prevUserAnswers) => [...prevUserAnswers, null]);
+        return;
+        };
+
         setAnswerState('selected');
         setUserAnswers((prevUserAnswer)=>{
            return [...prevUserAnswer,selectedAnswer]
@@ -29,7 +35,7 @@ export default function Quiz (){
             },2000);
         },1000);
 
-    },[activeQuestionIndex]);
+    },[activeQuestionIndex,answerState]);
 
 
     const handleSkipAnswer = useCallback(()=> handleSelectedAnswer(null),[handleSelectedAnswer]);
